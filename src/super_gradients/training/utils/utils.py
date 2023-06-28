@@ -22,6 +22,8 @@ from jsonschema import validate
 
 from super_gradients.common.abstractions.abstract_logger import get_logger
 
+import collections.abc
+
 # These functions changed from torch 1.2 to torch 1.3
 
 logger = get_logger(__name__)
@@ -582,22 +584,22 @@ def generate_batch(iterable: Iterable, batch_size: int) -> Iterable:
         else:
             return
 
+'''
+def ensure_is_tuple_of_two(inputs: Union[Any, Iterable[Any], None]) -> Union[Tuple[Any, Any], None]:
+    """
+    Checks input and converts it to a tuple of length two. If input is None returns None.
+    :param inputs: Input argument, either a number or a tuple of two numbers.
+    :return: Tuple of two numbers if input is not None, otherwise - None.
+    """
+    if inputs is None:
+        return None
 
-# def ensure_is_tuple_of_two(inputs: Union[Any, Iterable[Any], None]) -> Union[Tuple[Any, Any], None]:
-#     """
-#     Checks input and converts it to a tuple of length two. If input is None returns None.
-#     :param inputs: Input argument, either a number or a tuple of two numbers.
-#     :return: Tuple of two numbers if input is not None, otherwise - None.
-#     """
-#     if inputs is None:
-#         return None
+    if isinstance(inputs, typing.Iterable) and not isinstance(inputs, str):
+        a, b = inputs
+        return a, b
 
-#     if isinstance(inputs, typing.Iterable) and not isinstance(inputs, str):
-#         a, b = inputs
-#         return a, b
-
-#     return inputs, inputs
-
+    return inputs, inputs
+'''
 def ensure_is_tuple_of_two(inputs):
     if inputs is None:
         return None
